@@ -1,0 +1,2 @@
+{"level":"info","message":"::1 - - [05/Jul/2024:09:49:01 +0000] \"POST /api/scores HTTP/1.1\" 201 76 \"-\" \"PostmanRuntime/7.39.0\"","service":"user-service","timestamp":"2024-07-05T09:49:01.261Z"}
+{"level":"info","message":"::1 - - [05/Jul/2024:09:49:33 +0000] \"GET /api/scores HTTP/1.1\" 200 386 \"-\" \"PostmanRuntime/7.39.0\"","service":"user-service","timestamp":"2024-07-05T09:49:33.551Z"}
