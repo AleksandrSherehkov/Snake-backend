@@ -1,5 +1,3 @@
-// controllers/score.controller.ts
-
 import { Request, Response } from 'express';
 import * as scoreService from '../services/score.service';
 import tryCatch from '../utils/tryCatch';
