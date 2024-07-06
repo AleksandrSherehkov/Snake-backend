@@ -1,7 +1,10 @@
 {
   "name": "snake-game-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "build": "tsc",
