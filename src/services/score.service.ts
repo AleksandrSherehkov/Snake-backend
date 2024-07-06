@@ -1,10 +1,10 @@
-import { PrismaClient, Prisma } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export const addOrUpdateScore = async (name: string, score: number) => {
   return prisma.score.upsert({
-    where: { name: name } as Prisma.ScoreWhereUniqueInput,
+    where: { name },
     update: { score },
     create: { name, score },
   });
