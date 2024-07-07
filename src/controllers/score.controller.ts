@@ -6,8 +6,9 @@ import { HttpError } from '../utils/HttpError';
 export const addOrUpdateScore = tryCatch(
   async (req: Request, res: Response) => {
     const { name, score } = req.body;
-    if (!name || !score) {
-      throw new HttpError(400);
+
+    if (name === undefined || score === undefined) {
+      throw new HttpError(400, 'Name and score are required');
     }
     const updatedScore = await scoreService.addOrUpdateScore(name, score);
     res.status(201).json(updatedScore);
