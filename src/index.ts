@@ -23,6 +23,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  setInterval(pingServer, 19 * 60 * 1000);
+  setInterval(pingServer, 14 * 60 * 1000);
   pingServer();
 });
