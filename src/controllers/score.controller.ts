@@ -10,8 +10,14 @@ export const addOrUpdateScore = tryCatch(
     if (name === undefined || score === undefined) {
       throw new HttpError(400, 'Name and score are required');
     }
-    const updatedScore = await scoreService.addOrUpdateScore(name, score);
-    res.status(201).json(updatedScore);
+
+    const existingScore = await scoreService.addOrUpdateScore(name, score);
+
+    if (existingScore.score === score) {
+      res.status(201).json(existingScore);
+    } else {
+      res.status(200).json(existingScore);
+    }
   }
 );
 
