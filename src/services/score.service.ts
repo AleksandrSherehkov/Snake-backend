@@ -1,13 +1,33 @@
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export const addOrUpdateScore = async (name: string, score: number) => {
-  return prisma.score.upsert({
-    where: { name },
-    update: { score },
-    create: { name, score },
+interface ScoreResult {
+  id: number;
+  name: string;
+  score: number;
+  createdAt: Date;
+  updated: boolean;
+}
+
+export const addOrUpdateScore = async (
+  name: string,
+  score: number
+): Promise<ScoreResult> => {
+  const existingScore = await prisma.score.findUnique({
+    where: { name: name } as Prisma.ScoreWhereUniqueInput,
   });
+
+  if (!existingScore || score > existingScore.score) {
+    const result = await prisma.score.upsert({
+      where: { name: name } as Prisma.ScoreWhereUniqueInput,
+      update: { score },
+      create: { name, score },
+    });
+    return { ...result, updated: true };
+  }
+
+  return { ...existingScore, updated: false };
 };
 
 export const getScores = async () => {
